@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profesi TI - Etika & Tanggung Jawab</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        text-align: center;
+      }
+
+      .header h1 {
+        color: #667eea;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header p {
+        color: #666;
+        font-size: 1.1em;
+      }
+
+      .nav-tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .tab-btn {
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        color: #667eea;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .tab-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        background: white;
+      }
+
+      .tab-btn.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .content-section {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .card h2 {
+        color: #667eea;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+
+      .card h3 {
+        color: #764ba2;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+      }
+
+      .card h4 {
+        color: #667eea;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 1.2em;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+        border-left: 4px solid #667eea;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+      }
+
+      .highlight-box strong {
+        color: #764ba2;
+      }
+
+      ul {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+
+      li {
+        margin-bottom: 12px;
+        color: #444;
+      }
+
+      .step-number {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 35px;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .warning {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+        color: #856404;
+      }
+
+      .success {
+        background: #d4edda;
+        border-left: 4px solid #28a745;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 5px;
+        color: #155724;
+      }
+
+      .role-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+      }
+
+      .role-item {
+        background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #667eea30;
+        transition: all 0.3s ease;
+      }
+
+      .role-item:hover {
+        border-color: #667eea;
+        transform: scale(1.05);
+      }
+
+      .role-item strong {
+        color: #667eea;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.8em;
+        }
+
+        .tab-btn {
+          padding: 12px 20px;
+          font-size: 0.9em;
+        }
+
+        .card {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🖥️ Profesi TI</h1>
+        <p>Etika, Tanggung Jawab, dan Praktik Profesional</p>
+      </div>
+
+      <div class="nav-tabs">
+        <button class="tab-btn active" onclick="showTab('studi-kasus')">
+          📋 Studi Kasus
+        </button>
+        <button class="tab-btn" onclick="showTab('profesi')">
+          👨‍💻 Profesi TI
+        </button>
+        <button class="tab-btn" onclick="showTab('peran')">
+          🎯 Peran & Kompetensi
+        </button>
+        <button class="tab-btn" onclick="showTab('tanggung-jawab')">
+          🤝 Tanggung Jawab
+        </button>
+        <button class="tab-btn" onclick="showTab('sdlc')">🔄 Etika SDLC</button>
+        <button class="tab-btn" onclick="showTab('karier')">📈 Karier</button>
+      </div>
+
+      <div id="studi-kasus" class="content-section active">
+        <div class="card">
+          <h2>📋 Studi Kasus: Peluncuran Fitur Rekomendasi</h2>
+
+          <div class="warning">
+            <strong>⚠️ Situasi:</strong> Tim ingin meluncurkan fitur rekomendasi
+            yang butuh data aktivitas rinci. Masalah: analitik belum
+            di-anonymize, UI persetujuan belum jelas, tidak ada opt-out,
+            deadline ketat.
+          </div>
+
+          <h3>1. Siapa yang Harus "Speak Up" Pertama?</h3>
+          <div class="role-grid">
+            <div class="role-item">
+              <strong>🛡️ QA/SRE/SecOps</strong>
+              Paling urgent! Masalah keamanan data yang serius. Data mentah
+              berisiko bocor tinggi.
+            </div>
+            <div class="role-item">
+              <strong>🎨 UI/UX Designer</strong>
+              Tidak ada opt-out dan UI tidak jelas = pelanggaran hak kontrol
+              pengguna.
+            </div>
+            <div class="role-item">
+              <strong>📊 Data Engineer</strong>
+              Data belum di-anonymize = ancaman privasi pengguna.
+            </div>
+            <div class="role-item">
+              <strong>📦 Product Manager</strong>
+              Pertimbangkan dampak jangka panjang terhadap kepercayaan pengguna.
+            </div>
+          </div>
+
+          <h3>Argumen Etis:</h3>
+          <ul>
+            <li>
+              <strong>Privasi:</strong> Mengumpulkan data detail tanpa
+              anonymisasi melanggar hak privasi
+            </li>
+            <li>
+              <strong>Transparansi:</strong> UI tidak jelas = pengguna tidak
+              tahu datanya dipakai untuk apa
+            </li>
+            <li>
+              <strong>Kontrol:</strong> Tidak ada opt-out = memaksa pengguna
+              (dark pattern)
+            </li>
+            <li>
+              <strong>Keamanan:</strong> Data mentah sangat berisiko bocor atau
+              disalahgunakan
+            </li>
+            <li>
+              <strong>Akuntabilitas:</strong> Siapa yang bertanggung jawab jika
+              terjadi kebocoran?
+            </li>
+          </ul>
+
+          <h3>2. Gate Etis Wajib di Setiap Fase SDLC</h3>
+
+          <div class="highlight-box">
+            <h4><span class="step-number">1</span>Tahap Desain</h4>
+            <p><strong>Privacy by Design & Security by Design</strong></p>
+            <p>
+              Aplikasi harus transparan, user tahu dan punya pilihan jelas
+              (opt-out). Jika dilewati → user merasa ditipu.
+            </p>
+          </div>
+
+          <div class="highlight-box">
+            <h4><span class="step-number">2</span>Tahap Development</h4>
+            <p><strong>Anonymisasi, Enkripsi, Logging Aman</strong></p>
+            <p>
+              Data harus diamankan segera. Jika tidak → data mudah bocor dan
+              disalahgunakan.
+            </p>
+          </div>
+
+          <div class="highlight-box">
+            <h4><span class="step-number">3</span>Tahap Testing</h4>
+            <p>
+              <strong>Uji Keamanan, Opt-out, Persetujuan, Anonymisasi</strong>
+            </p>
+            <p>
+              Semua harus dites teliti. Jika tidak → bug/celah baru ketahuan
+              setelah merugikan user.
+            </p>
+          </div>
+
+          <div class="highlight-box">
+            <h4><span class="step-number">4</span>Tahap Rilis</h4>
+            <p>
+              <strong
+                >Dokumentasi Risiko, Persetujuan Keamanan, Consent Aktif,
+                Rollback Plan</strong
+              >
+            </p>
+            <p>
+              Wajib dipenuhi. Jika dilewati → fitur diluncurkan tanpa tanggung
+              jawab, bisa melanggar hukum.
+            </p>
+          </div>
+
+          <div class="highlight-box">
+            <h4><span class="step-number">5</span>Tahap Operasi</h4>
+            <p><strong>Monitoring, Incident Response, Audit Berkala</strong></p>
+            <p>
+              Tim tidak boleh lepas tangan. Jika dilewatkan → masalah telat
+              diketahui, kerugian makin besar.
+            </p>
+          </div>
+
+          <h3>3. Solusi Transisi</h3>
+
+          <div class="success">
+            <strong>✅ Opsi Terbaik: Tunda Rilis 1-2 Minggu</strong>
+            <ul>
+              <li>Anonimkan data pengguna</li>
+              <li>Sediakan opt-out yang jelas</li>
+              <li>Perbaiki UI persetujuan (transparan)</li>
+            </ul>
+            <p>
+              <em
+                >Risiko lebih kecil vs skandal privasi + kehilangan kepercayaan
+                + sanksi hukum</em
+              >
+            </p>
+          </div>
+
+          <div class="warning">
+            <strong>⚡ Opsi Kompromi: Rilis Terbatas (Beta)</strong>
+            <ul>
+              <li>Buka untuk 100-500 user yang setuju</li>
+              <li>Matikan pengumpulan data detail</li>
+              <li>Beri banner: "Fitur masih tahap uji coba"</li>
+            </ul>
+            <p><em>Tetap tunjukkan progres tanpa risiko besar</em></p>
+          </div>
+
+          <h3>🧭 Heuristik: Perlu – Jelas – Aman</h3>
+          <ul>
+            <li>✅ <strong>Perlu:</strong> Terpenuhi (fitur bermanfaat)</li>
+            <li>
+              ❌ <strong>Jelas:</strong> Belum (persetujuan membingungkan)
+            </li>
+            <li>❌ <strong>Aman:</strong> Belum (data belum dianonimkan)</li>
+          </ul>
+          <p>
+            <strong>Keputusan Etis:</strong> Tunda rilis atau batasi cakupan
+            sampai benar-benar aman.
+          </p>
+        </div>
+      </div>
+
+      <div id="profesi" class="content-section">
+        <div class="card">
+          <h2>👨‍💻 Pemahaman Profesi TI</h2>
+
+          <p>
+            Profesi TI adalah bidang pekerjaan yang membutuhkan keahlian khusus,
+            baik dari jalur pendidikan formal maupun sertifikasi profesional.
+          </p>
+
+          <div class="highlight-box">
+            <strong>Profesional Sejati:</strong>
+            <ul>
+              <li>Memiliki pengetahuan luas</li>
+              <li>Pengalaman nyata (portofolio/proyek)</li>
+              <li>Kesadaran dampak sosial pekerjaan</li>
+              <li>Kepatuhan pada kode etik</li>
+            </ul>
+          </div>
+
+          <h3>Kategori Profesi TI</h3>
+
+          <div class="role-grid">
+            <div class="role-item">
+              <strong>💻 Software</strong>
+              Sistem Analis, Programmer, Web Designer, Database Administrator
+            </div>
+            <div class="role-item">
+              <strong>🔧 Hardware</strong>
+              Technical Engineer, Network Engineer
+            </div>
+            <div class="role-item">
+              <strong>📊 Operasional</strong>
+              IT Manager, Project Manager, Account Manager
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="peran" class="content-section">
+        <div class="card">
+          <h2>🎯 Peran Modern & Kompetensi Etis</h2>
+
+          <h3>Software Engineer</h3>
+          <ul>
+            <li>Memahami SDLC</li>
+            <li>Menulis clean code</li>
+            <li>Menjaga keamanan sejak awal</li>
+            <li>Patuh terhadap aturan lisensi</li>
+          </ul>
+
+          <h3>Data Engineer/Scientist</h3>
+          <ul>
+            <li>Menjaga kualitas data</li>
+            <li>Melindungi privasi dengan anonymisasi</li>
+            <li>Mencegah bias dalam AI</li>
+          </ul>
+
+          <h3>Product Manager</h3>
+          <ul>
+            <li>Mempertimbangkan nilai untuk user</li>
+            <li>Dampak sosial (bukan sekadar profit)</li>
+            <li>Memastikan informed consent</li>
+          </ul>
+
+          <h3>QA/SecOps</h3>
+          <ul>
+            <li>Menjamin keandalan sistem</li>
+            <li>Melindungi data</li>
+            <li>Cepat merespons insiden</li>
+          </ul>
+
+          <h3>UI/UX Designer</h3>
+          <ul>
+            <li>Memastikan aksesibilitas</li>
+            <li>Menghindari dark patterns</li>
+            <li>Menyediakan kontrol data yang jelas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="tanggung-jawab" class="content-section">
+        <div class="card">
+          <h2>🤝 Tanggung Jawab Sosial</h2>
+
+          <p>Profesional TI memiliki tanggung jawab sosial yang luas kepada:</p>
+
+          <div class="role-grid">
+            <div class="role-item">
+              <strong>👥 Pengguna Akhir</strong>
+              Melindungi data dan memberikan nilai
+            </div>
+            <div class="role-item">
+              <strong>🤝 Klien</strong>
+              Memberikan solusi terbaik
+            </div>
+            <div class="role-item">
+              <strong>👨‍💼 Rekan Kerja</strong>
+              Kolaborasi profesional
+            </div>
+            <div class="role-item">
+              <strong>🌍 Publik</strong>
+              Dampak teknologi pada masyarakat
+            </div>
+            <div class="role-item">
+              <strong>⚖️ Regulator</strong>
+              Kepatuhan hukum (UU PDP)
+            </div>
+            <div class="role-item">
+              <strong>🔓 Komunitas Open Source</strong>
+              Kontribusi dan berbagi
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h3>Prinsip "No Harm"</h3>
+            <p>
+              Teknologi yang dibuat tidak boleh menimbulkan dampak negatif yang
+              bisa diprediksi:
+            </p>
+            <ul>
+              <li>❌ Kebocoran data</li>
+              <li>❌ Algoritma diskriminatif</li>
+              <li>❌ Fitur adiktif</li>
+              <li>❌ Fungsi rawan disalahgunakan</li>
+            </ul>
+          </div>
+
+          <h3>Transparansi & Pelibatan User</h3>
+          <p>
+            Sangat penting terutama dalam fitur yang berisiko. User harus tahu
+            apa yang terjadi dengan data mereka dan punya kontrol penuh.
+          </p>
+        </div>
+      </div>
+
+      <div id="sdlc" class="content-section">
+        <div class="card">
+          <h2>🔄 Etika dalam SDLC</h2>
+
+          <div class="highlight-box">
+            <h3><span class="step-number">1</span>Tahap Desain</h3>
+            <ul>
+              <li>Privacy-by-design</li>
+              <li>Security-by-design</li>
+              <li>Aksesibilitas</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h3><span class="step-number">2</span>Tahap Implementasi</h3>
+            <ul>
+              <li>Minimisasi data</li>
+              <li>Logging aman</li>
+              <li>Uji keamanan</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h3><span class="step-number">3</span>Tahap Testing</h3>
+            <ul>
+              <li>Uji semua fitur (privasi & aksesibilitas)</li>
+              <li>Tanpa kompromi karena deadline</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h3><span class="step-number">4</span>Tahap Rilis</h3>
+            <ul>
+              <li>Persetujuan aktif pengguna</li>
+              <li>Dokumentasi risiko</li>
+              <li>Rollback plan wajib</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <h3><span class="step-number">5</span>Tahap Operasi</h3>
+            <ul>
+              <li>Monitoring terus-menerus</li>
+              <li>Incident response</li>
+              <li>Perbaikan berkelanjutan</li>
+            </ul>
+          </div>
+
+          <h3>📝 Komunikasi Profesional dan Dokumentasi</h3>
+
+          <h4>Update Status yang Jujur:</h4>
+          <ul>
+            <li>Progres yang sudah selesai</li>
+            <li>Risiko yang dihadapi</li>
+            <li>Bantuan yang dibutuhkan</li>
+            <li>Bukan laporan samar</li>
+          </ul>
+
+          <h4>Dokumentasi Keputusan Penting:</h4>
+          <ul>
+            <li>Alasan keputusan</li>
+            <li>Opsi yang ditolak</li>
+            <li>Mitigasi risiko</li>
+            <li>Penanggung jawab</li>
+          </ul>
+
+          <div class="success">
+            <strong>💡 Blameless Postmortem:</strong> Jika terjadi insiden,
+            evaluasi dengan menekankan perbaikan sistem, bukan menyalahkan
+            individu. Ciptakan budaya tim yang terbuka dan tidak takut
+            melaporkan masalah.
+          </div>
+        </div>
+      </div>
+
+      <div id="karier" class="content-section">
+        <div class="card">
+          <h2>📈 Karier dan Peningkatan Mutu</h2>
+
+          <h3>Pengembangan Karier</h3>
+          <ul>
+            <li>🌐 Aktif di komunitas</li>
+            <li>💼 Proyek pribadi</li>
+            <li>👔 Pekerjaan klien untuk portofolio</li>
+            <li>📜 Sertifikasi profesional</li>
+          </ul>
+
+          <h3>Etika Freelance</h3>
+          <div class="highlight-box">
+            <h4>Kontrak & HKI Penting:</h4>
+            <ul>
+              <li>Kepemilikan kode</li>
+              <li>Lisensi yang jelas</li>
+              <li>NDA (Non-Disclosure Agreement)</li>
+            </ul>
+
+            <h4>Prinsip Etis:</h4>
+            <ul>
+              <li>Ekspektasi realistis</li>
+              <li>Ruang lingkup kerja jelas</li>
+              <li>Perlindungan data klien</li>
+            </ul>
+          </div>
+
+          <h3>Dilema Startup</h3>
+          <div class="warning">
+            <strong>⚠️ Pertumbuhan Cepat vs Integritas</strong>
+            <p>Integritas tidak boleh dikorbankan:</p>
+            <ul>
+              <li>❌ Manipulasi metrik dengan bot</li>
+              <li>❌ Dark patterns yang menipu user</li>
+              <li>❌ Mengabaikan privasi demi pertumbuhan</li>
+            </ul>
+          </div>
+
+          <h3>🎯 Kesimpulan Utama</h3>
+          <div class="success">
+            <ol>
+              <li>
+                <strong>Setiap peran TI punya tanggung jawab etis</strong>
+                (bukan hanya programmer)
+              </li>
+              <li><strong>Komunikasi jujur = tim profesional</strong></li>
+              <li>
+                <strong>Prinsip Perlu–Jelas–Aman</strong> harus selalu jadi
+                pedoman
+              </li>
+            </ol>
+
+            <p style="margin-top: 20px">
+              <strong>Standar Etika Lintas Peran:</strong>
+            </p>
+            <ul>
+              <li>🔒 Keamanan</li>
+              <li>🔐 Privasi</li>
+              <li>⚖️ Keadilan</li>
+              <li>📋 Akuntabilitas</li>
+            </ul>
+
+            <p style="margin-top: 20px; font-size: 1.2em; text-align: center">
+              <strong
+                >💎 Kepercayaan pengguna adalah aset terpenting yang, sekali
+                hilang, sulit dibangun kembali.</strong
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showTab(tabId) {
+        const sections = document.querySelectorAll(".content-section");
+        const buttons = document.querySelectorAll(".tab-btn");
+
+        sections.forEach((section) => section.classList.remove("active"));
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        document.getElementById(tabId).classList.add("active");
+        event.target.classList.add("active");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>
